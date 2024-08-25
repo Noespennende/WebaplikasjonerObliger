@@ -1,4 +1,5 @@
 import NavBar from "./NavBar"
+import Footer from "./Footer"
 
 export default function Layout({children}){
 
@@ -11,7 +12,7 @@ export default function Layout({children}){
                 {children}
             </main>
             <footer>
-
+                <Footer/>
             </footer>
         </>
     )
