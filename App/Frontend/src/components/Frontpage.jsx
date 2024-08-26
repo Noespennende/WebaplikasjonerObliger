@@ -7,9 +7,13 @@ export default function Frontpage(){
     return (
         <>
             <SearchPortfolio/>
-            <section>
-                <h1>Sjekk ut mine prosjekter</h1>
-                <ArticleCard header="Header" tags="C# .Net" image={Harbnet} imageAlt="caption" text="Kort men beskrivende tekst" link="#"/>
+            <section id="frontpageContent">
+                <h1 id="frontPageHeader">Sjekk ut mine prosjekter</h1>
+                <div id="articleCards">
+                    <ArticleCard header="Header" tags="C# .Net" image={Harbnet} imageAlt="caption"
+                    text="Kort men beskrivende tekst som sier noe om prosjektet. Enda litt mer tekst som erbeskrivende for prosjektet"
+                    link="#"/>
+                </div>
             </section>
         </>
     )
