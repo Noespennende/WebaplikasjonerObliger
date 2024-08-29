@@ -13,7 +13,7 @@ export default function NavBar(){
                 </picture>
             </Link>
             <ul>
-                <li><Link to="#">Hjem</Link></li>
+                <li><Link to="/">Hjem</Link></li>
                 <li><Link to="#">Om meg</Link></li>
             </ul>
         </nav>
