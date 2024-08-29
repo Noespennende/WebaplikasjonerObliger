@@ -10,6 +10,7 @@
     --orange: #ffa11a;
     --magenta: #ec1e5e;
     --gradient: linear-gradient(to right, #24268e , #781582, #ec1564, #f58624);
+    --limitedgradient: linear-gradient(to right, #ec1564, #f58624);
     --LightGray: #c3c3c3;
     --white: #ffffff;
     --thin: 100;
@@ -106,7 +107,8 @@ main {
             }
             button:hover {
                 cursor: pointer;
-                background-color: var(--LightGray);
+                background-color: transparent;
+                background-image: var(--limitedgradient);
             }
         }
 
