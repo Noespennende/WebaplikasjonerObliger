@@ -1,0 +1,7 @@
+sequenceDiagram
+    Bruker->>+Frontend: besøker siden
+    Frontend->>+Backend: Fetch(type: GET, Articles data.json)
+    Backend->>+JsonFile: Les data fra JSON fil
+    JsonFile ->>+Backend: JSON data
+    Backend->>+Frontend: Api-response (JSON data)
+    Frontend->>+Bruker: Vis forside med alle artikkelkortene

@@ -1,6 +1,7 @@
 import SearchPortfolio from "./SearchPortfolio";
 import { useEffect, useState } from 'react'
 import ArticleCard from "./ArticleCard";
+import { Link } from "react-router-dom";
 
 export default function Frontpage(){
 
@@ -40,6 +41,7 @@ export default function Frontpage(){
                         ))}
                     </ul>
                 </div>
+                <Link id="createArticle" label="createArticle" to="/createarticle">+</Link>
             </section>
         </>
     )

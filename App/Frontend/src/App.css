@@ -3,6 +3,7 @@
     --font: 'Roboto', sans-serif;
     --rootsize: 20px;
     --maxsize: 1200px;
+    --pagewith: 700px;
     --lightblack: #1e1e1e;
     --textcolor: #20123a;
     --purple: #8f3b95;
@@ -126,9 +127,11 @@ main {
 
     #frontpageContent{
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         flex-direction: column;
         margin-bottom: 10rem;
+        max-width: var(--maxsize);
 
         #frontPageHeader {
             display: inline-block;
@@ -143,16 +146,16 @@ main {
             padding: .4rem 0;
         }
 
-        
-    
         #articleCards {
             display: flex;
-            flex-wrap: wra;
+            flex-wrap: wrap;
             flex-direction: row;
             justify-content: space-between;
             gap: 4rem;
 
             ul {
+                display: flex;
+                flex-wrap: wrap;
                 list-style: none;
                 display: flex;
                 flex-direction: row;
@@ -161,7 +164,7 @@ main {
                 .articleCardListElements {
 
                     box-shadow: 0 0 5px #999c9f;
-                        border-radius: 5px;
+                    border-radius: 5px;
 
                     .articleCard {
                         text-decoration: none;
@@ -172,7 +175,8 @@ main {
                         article {
                             display:flex;
                             flex-direction: column;
-                            max-width: 300px;
+                            width: 300px;
+                            height: 350px;
             
                             picture {
                                 img {
@@ -220,12 +224,31 @@ main {
                 
             }
         }
+
+        #createArticle {
+            text-decoration: none;
+            text-align: center;
+            color: var(--textcolor);
+            font-size: 2rem;
+            font-weight: var(--regular);
+            margin-top: 3rem;
+            padding: 1rem 10rem;
+            border: solid 2px;
+            border-radius: 5px;
+            border-color: var(--LightGray);
+            background-color: var(--white); 
+        }
+
+        #createArticle:hover {
+            background-image: var(--limitedgradient);
+            background-size: cover;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
         
     }
 
     /*Article cards*/
-    
-
     /*Article page*/
 
     #articlePage {
@@ -234,7 +257,7 @@ main {
         align-items: center;
         flex-direction: column;
         justify-content: center;
-        max-width: 700px;
+        max-width: var(--pagewith);
         margin-bottom: 5rem;;
 
         picture {
@@ -308,9 +331,96 @@ main {
                 cursor: pointer;
             }
         }
+    }
+
+    /*Create Article page*/
+
+    #createArticlePage{
+        display:flex;
+        flex-direction: column;
+        max-width: var(--pagewith);
+        width: var(--pagewith);
+        color: var(--textcolor);
 
 
+        h1 {
+            font-size: 30px;
+            font-weight: var(--bold);
+            margin: 0;
+            margin-top: 2rem;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
 
+            label {
+                margin-top: 1rem;
+            }
+
+            input{
+                margin-top: .4rem;
+                font-family: var(--bold);
+                font-size: 16px;
+                border-style: solid;
+                border-width: 1.5px;
+                border-radius: 4px;
+                border-color: var(--LightGray);
+                color: var(--lightblack);
+                padding: .2rem .5rem;
+                font-weight: var(--regular);
+            }
+
+            textarea {
+                margin-top: .4rem;
+                resize: vertical;
+                min-height: 400px;
+                font-family: var(--bold);
+                font-size: 16px;
+                border-style: solid;
+                border-width: 1.5px;
+                border-radius: 4px;
+                border-color: var(--LightGray);
+                color: var(--lightblack);
+                padding: .2rem .5rem;
+                font-weight: var(--regular);
+            }
+
+            button {
+                align-self: center;
+                text-align: center;
+                color: var(--textcolor);
+                font-size: 1rem;
+                font-weight: var(--bold);
+                margin: 3rem;
+                margin-bottom: 1rem;
+                padding: 1rem 10rem;
+                border: solid 2px;
+                border-radius: 5px;
+                border-color: var(--LightGray);
+                background-color: var(--white); 
+            }
+
+            button:hover {
+                background-image: var(--limitedgradient);
+                background-size: cover;
+                background-repeat: no-repeat;
+                cursor: pointer;
+            }
+
+            #formmessage {
+                align-self: center;
+                text-align: center;
+                margin-bottom: 5rem;
+                font-weight: var(--bold);
+                
+            }
+
+            .error {
+                color:red;
+            }
+        }
     }
     
 }

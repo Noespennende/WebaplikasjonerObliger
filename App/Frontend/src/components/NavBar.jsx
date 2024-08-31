@@ -6,7 +6,7 @@ export default function NavBar(){
     return(
         <>
         <nav>
-            <Link id="logo">
+            <Link id="logo" to="/">
                 <picture>
                     <source media="(min-width:300px)" srcSet={logo}/>
                     <img src={logo} alt="Andreas Berg portfolio"  width="120" height=""></img>

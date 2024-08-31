@@ -1,0 +1,15 @@
+sequenceDiagram
+    Bruker->>+Frontend: Artikkeldata
+    Frontend->>+Frontend: vis data i frontend
+    Frontend->>+Backend: POST(Artikkeldata.JSON)
+    Backend->>+JsonFile: Les data fra JSON fil
+    JsonFile ->>-Backend: JSON data
+    Backend->>+Backend: NyttJSONObjekt = JsonFile data + artikkeldata.json
+    Backend->>+JsonFile: Overskriv data i JsonFile med NyttJSONObjekt
+    Backend->>+Frontend: Api-response: (Success / failiour)
+    Frontend->>+Frontend: redirect bruker til forside
+    Frontend->>+Backend: Fetch(Articles data.json)
+    Backend->>+JsonFile: Les data fra JSON fil
+    JsonFile ->>-Backend: JSON data
+    Backend->>+Frontend: Api-response (JSON data)
+    Frontend->>+Bruker: Vis oppdatert forside med ny artikkel
