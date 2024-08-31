@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 export default function createArticle (){
+
+    const redirect = useNavigate();
 
     const [formMessage, setFormMessage] = useState("")
     const [articleData, setArticleData] = useState({})
@@ -54,35 +56,46 @@ export default function createArticle (){
         e.preventDefault()
         if(header.length === 0){
             setFormMessage("Artikkelen trenger en overskrift!")
+            document.getElementById("formmessage").className = "error"
         }
         else if (slug.length === 0){
             setFormMessage("Artikkelen trenger en slug!")
+            document.getElementById("formmessage").className = "error"
         }
         else if (summary.length === 0){
             setFormMessage("Artikkelen trenger ett sammendrag!")
+            document.getElementById("formmessage").className = "error"
         }
         else if (tags.length === 0){
             setFormMessage("Artikkelen trenger noen tags!")
+            document.getElementById("formmessage").className = "error"
         }
         else if (image.length === 0){
             setFormMessage("Artikkelen trenger ett bilde!")
+            document.getElementById("formmessage").className = "error"
         }
         else if (imageAlt.length === 0){
             setFormMessage("Artikkelens bilde trenger en bildebeskrivelse!")
+            document.getElementById("formmessage").className = "error"
         }
         else if (repository.length === 0){
             setFormMessage("Artikkelen trenger en link til repositoriet!")
+            document.getElementById("formmessage").className = "error"
         }
         else if (slug.text === 0){
             setFormMessage("Artikkelen trenger en artikkeltekst!")
+            document.getElementById("formmessage").className = "error"
         } else {
             setFormMessage("Informasjonen er motatt!")
+            document.getElementById("formmessage").className = ""
+            const tagsList = tags.split(" ")
+
             setArticleData(
                 {
                     header: header,
                     slug: slug,
                     summary: summary,
-                    tags: tags,
+                    tags: tagsList,
                     image: image,
                     imagealt: imageAlt,
                     repository: repository,
@@ -93,7 +106,31 @@ export default function createArticle (){
     }
 
     useEffect( () => {
-        console.log(articleData)
+        if (Object.keys(articleData).length > 7){
+            const postJsonDataToServer = async (data) => { 
+
+                try {
+                    const response = await fetch("http://localhost:3999/submit", {
+                        method: 'POST',
+                        header: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+
+                    if (!response.ok){
+                        console.error(`Post request failed: ${response.status}`)
+                    } else {
+                        redirect("/")
+                    }
+                } 
+                catch (error){
+                    console.error("post request failed: " + error)
+                } 
+            }
+            postJsonDataToServer(articleData)
+        }
+        
     },[articleData])
 
     return(
@@ -117,7 +154,7 @@ export default function createArticle (){
                     <label htmlFor="createRepository">Repository link</label>
                     <input onChange={handleRepositoryChange} type="url" id="createRepository" name="createRepository" placeholder="https://github.com/eksempel......" required></input>
                     <label htmlFor="createText">Artikkel</label>
-                    <textarea onChange={handleTextChange} r type="text" id="createText" name="createText" placeholder="Artikkel tekst..." required></textarea>
+                    <textarea onChange={handleTextChange} type="text" id="createText" name="createText" placeholder="Artikkel tekst..." required></textarea>
                     <button onClick={handleSubmitt}>Opprett artikkel</button>
                     <p id="formmessage">{formMessage}</p>
                 </form>

@@ -127,9 +127,11 @@ main {
 
     #frontpageContent{
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         flex-direction: column;
         margin-bottom: 10rem;
+        max-width: var(--maxsize);
 
         #frontPageHeader {
             display: inline-block;
@@ -146,12 +148,14 @@ main {
 
         #articleCards {
             display: flex;
-            flex-wrap: wra;
+            flex-wrap: wrap;
             flex-direction: row;
             justify-content: space-between;
             gap: 4rem;
 
             ul {
+                display: flex;
+                flex-wrap: wrap;
                 list-style: none;
                 display: flex;
                 flex-direction: row;
@@ -160,7 +164,7 @@ main {
                 .articleCardListElements {
 
                     box-shadow: 0 0 5px #999c9f;
-                        border-radius: 5px;
+                    border-radius: 5px;
 
                     .articleCard {
                         text-decoration: none;
@@ -171,7 +175,8 @@ main {
                         article {
                             display:flex;
                             flex-direction: column;
-                            max-width: 300px;
+                            width: 300px;
+                            height: 350px;
             
                             picture {
                                 img {
@@ -410,6 +415,10 @@ main {
                 margin-bottom: 5rem;
                 font-weight: var(--bold);
                 
+            }
+
+            .error {
+                color:red;
             }
         }
     }
