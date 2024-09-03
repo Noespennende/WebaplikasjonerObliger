@@ -16,6 +16,7 @@ export default function Frontpage(){
 
     useEffect(() => {
         fetchJsonDataFromServer()
+        return() => fetchJsonDataFromServer.abort();
     },[])
 
     useEffect(() => {
