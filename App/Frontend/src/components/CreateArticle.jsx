@@ -6,7 +6,7 @@ export default function createArticle (){
     const redirect = useNavigate();
 
     const [formMessage, setFormMessage] = useState("")
-    const [articleData, setArticleData] = useState({})
+    
     //States to store form information
     const [header, setHeader] = useState("")
     const [slug, setSlug] = useState("")
@@ -16,6 +16,29 @@ export default function createArticle (){
     const [imageAlt, setImageAlt] = useState("")
     const [repository, setRepository] = useState("")
     const [text, setText] = useState("")
+
+    //Post data to server
+    const postJsonDataToServer = async (data) => { 
+
+        try {
+            const response = await fetch("http://localhost:3999/submit", {
+                method: 'POST',
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+
+            if (!response.ok){
+                console.error(`Post request failed: ${response.status}`)
+            } else {
+                redirect("/")
+            }
+        } 
+        catch (error){
+            console.error("post request failed: " + error)
+        } 
+    }
 
     //HandleChange functions to handle form inputs
     const handleHeaderChange = (e) => {
@@ -90,7 +113,7 @@ export default function createArticle (){
             document.getElementById("formmessage").className = ""
             const tagsList = tags.split(" ")
 
-            setArticleData(
+            const articleData = 
                 {
                     header: header,
                     slug: slug,
@@ -101,37 +124,11 @@ export default function createArticle (){
                     repository: repository,
                     article: text
                 }
-            )
+            
+            postJsonDataToServer(articleData)
         }   
     }
 
-    useEffect( () => {
-        if (Object.keys(articleData).length > 7){
-            const postJsonDataToServer = async (data) => { 
-
-                try {
-                    const response = await fetch("http://localhost:3999/submit", {
-                        method: 'POST',
-                        header: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-
-                    if (!response.ok){
-                        console.error(`Post request failed: ${response.status}`)
-                    } else {
-                        redirect("/")
-                    }
-                } 
-                catch (error){
-                    console.error("post request failed: " + error)
-                } 
-            }
-            postJsonDataToServer(articleData)
-        }
-        
-    },[articleData])
 
     return(
         <>
