@@ -122,9 +122,10 @@ export default function createArticle (){
                     image: image,
                     imagealt: imageAlt,
                     repository: repository,
-                    article: text
+                    article: text,
+                    createdAt: Date.now()
                 }
-            
+                
             postJsonDataToServer(articleData)
         }   
     }

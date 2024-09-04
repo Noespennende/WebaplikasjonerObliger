@@ -8,15 +8,16 @@ export default function Frontpage(){
     const [articles, setArticles] = useState([])
     
     const fetchJsonDataFromServer = async () => {
-        await fetch("http://localhost:3999/json")
+        await fetch("http://localhost:3999/projects")
         .then((response) => response.json())
         .then((data) => setArticles(data))
         .catch((error) => console.error("Data could not be found", error))
     }
 
     useEffect(() => {
+        const controller = new AbortController()
         fetchJsonDataFromServer()
-        return() => fetchJsonDataFromServer.abort();
+        return() => controller.abort()
     },[])
 
     useEffect(() => {

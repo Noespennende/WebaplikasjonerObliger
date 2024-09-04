@@ -10,11 +10,10 @@ app.use("/*", cors()) //Filter for å si hvem som kan gå på servere. /* betyr 
 
 app.use("/statics/*", serveStatic({ root: "./" }));
 
-app.get('/json', async (c) => {
+app.get('/projects', async (c) => {
     const data = await readFile("./jsonData/database.json", "utf-8")
     return c.json(JSON.parse(data))
 }) //Definerer hvilken URL vi henter info fra. I dette tilfellet localhost3999/json
-
 
 
 app.post('/submit', async (c) => {
