@@ -2,8 +2,10 @@ import SearchPortfolio from "./SearchPortfolio";
 import { useEffect, useState } from 'react'
 import ArticleCard from "./ArticleCard";
 import { Link } from "react-router-dom";
+import "../assets/Types"
+import Experiences from "./Experiences";
 
-export default function Frontpage(){
+export default function Frontpage({person} : {person : person}){
 
     const [articles, setArticles] = useState([])
     
@@ -29,7 +31,7 @@ export default function Frontpage(){
             <SearchPortfolio/>
             <section id="frontpageContent">
                 <h1 id="frontPageHeader">Sjekk ut mine prosjekter</h1>
-                <div id="articleCards">
+                <section id="articleCards">
                     <ul>
                         {articles?.map((article, index) => (
                             <li key={index} className="articleCardListElements">
@@ -43,8 +45,14 @@ export default function Frontpage(){
                             </li>
                         ))}
                     </ul>
-                </div>
+                </section>
                 <Link id="createArticle" label="createArticle" to="/createarticle">+</Link>
+
+                <section id="experiences">
+                    <Experiences person={person}>
+
+                    </Experiences>
+                </section>
             </section>
         </>
     )

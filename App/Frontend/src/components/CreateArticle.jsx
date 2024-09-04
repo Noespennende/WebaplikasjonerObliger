@@ -136,7 +136,7 @@ export default function createArticle (){
             <section id="createArticlePage">
                 <h1>Opprett en ny artikkel</h1>
 
-                <form>
+                <form onSubmit={handleSubmitt}>
                     <label htmlFor="createHeader">Overskrift</label>
                     <input onChange={handleHeaderChange} type="text" id="createHeader" name="createHeader" placeholder="Overskrift..." required></input>
                     <label htmlFor="createSlug">Slug</label>
@@ -153,7 +153,7 @@ export default function createArticle (){
                     <input onChange={handleRepositoryChange} type="url" id="createRepository" name="createRepository" placeholder="https://github.com/eksempel......" required></input>
                     <label htmlFor="createText">Artikkel</label>
                     <textarea onChange={handleTextChange} type="text" id="createText" name="createText" placeholder="Artikkel tekst..." required></textarea>
-                    <button onClick={handleSubmitt}>Opprett artikkel</button>
+                    <button type="submit">Opprett artikkel</button>
                     <p id="formmessage">{formMessage}</p>
                 </form>
             </section>

@@ -12,7 +12,7 @@ export default function ArticlePage(){
 
     useEffect(() => {
         const fetchJsonDataFromServer = async () => {
-            await fetch("http://localhost:3999/json")
+            await fetch("http://localhost:3999/projects")
             .then((response) => response.json())
             .then((data) => {
                 for (let obj of data){
