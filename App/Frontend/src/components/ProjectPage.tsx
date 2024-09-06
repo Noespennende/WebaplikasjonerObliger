@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 
 import { useEffect, useState } from 'react'
 
-export default function ArticlePage(){
+export default function ProjectPage(){
     const { slug } = useParams()
 
-    const [article, setArticle] = useState()
+    const [project, setproject] = useState()
 
     useEffect(() => {
         const fetchJsonDataFromServer = async () => {
@@ -17,7 +17,7 @@ export default function ArticlePage(){
             .then((data) => {
                 for (let obj of data){
                     if(obj.slug.includes(slug)){
-                        setArticle(obj)
+                        setproject(obj)
                     }
                 }
             })
@@ -27,22 +27,22 @@ export default function ArticlePage(){
     },[slug])
 
     useEffect(() => {
-    },[article])
+    },[project])
 
 
     return (
         <>
-            <section id="articlePage">
+            <section id="projectPage">
                 <picture>
-                    <source media="(min-width:300px)" srcSet={article?.image}/>
-                    <img src={article?.image} alt={article?.imagealt} width="700" height=""></img>
+                    <source media="(min-width:300px)" srcSet={project?.image}/>
+                    <img src={project?.image} alt={project?.imagealt} width="700" height=""></img>
                 </picture>
-                <article id="articleContent">
-                    <div id="articlePageHeaderAndTags">
-                        <h1>{article?.header}</h1>
+                <article id="projectContent">
+                    <div id="projectPageHeaderAndTags">
+                        <h1>{project?.header}</h1>
                         <ul id="tags">
-                            {article?.tags.map(((tag, index) => {
-                                return <li key={"articleTags"+tag+index}>{tag}</li>
+                            {project?.tags.map(((tag, index) => {
+                                return <li key={"projectTags"+tag+index}>{tag}</li>
                             }))}
                         </ul>
                     </div>
@@ -51,9 +51,9 @@ export default function ArticlePage(){
                         <img src={Line} alt=""  width="130" height=""></img>
                     </picture>
 
-                    <Link to={article?.repository} id="repositoryButton"><FaGithub /> Visit repository</Link>
+                    <Link to={project?.repository} id="repositoryButton"><FaGithub /> Visit repository</Link>
                     
-                    <p>{article?.article}</p>
+                    <p>{project?.article}</p>
                 </article>
             </section>
         </>

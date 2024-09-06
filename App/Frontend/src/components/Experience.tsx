@@ -1,11 +1,11 @@
-import exp from "constants"
-import "../assets/Types"
+import {involvement} from "../../../Types"
+
 
 export default function Experience ({experience} : {experience: involvement}){
     
     return (
         <>
-        <p>{experience.role} for {experience.company}</p>
+            <li>{experience.role} for {experience.company}</li>
         </>
     )
 }

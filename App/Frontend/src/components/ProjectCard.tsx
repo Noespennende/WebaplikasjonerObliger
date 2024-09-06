@@ -3,20 +3,20 @@ import Line from "../assets/Line.png"
 import { useEffect } from "react"
 import { useState } from "react"
 
-export default function ArticleCard({header, tags, image, imageAlt, text, link} :
+export default function ProjectCard({header, tags, image, imageAlt, text, link} :
     {header: string, tags: string[], image: string, imageAlt: string, text: string, link: string})
     {
 
 
     return (
         <>
-        <Link to={link} className="articleCard">
+        <Link to={link} className="projectCard">
             <article>
                 <picture>
                     <source media="(min-width:300px)" srcSet={image}/>
                     <img src="../assets/HarbNet.png" alt={imageAlt}  width="300" height="160"></img>
                 </picture>
-                <div className="articleCardHeaderAndTags">
+                <div className="projectCardHeaderAndTags">
                     <h2>{header}</h2>
                     <ul>
                         {tags.map((tag, index) => {

@@ -1,17 +1,13 @@
-import { useEffect } from "react"
-import "../assets/Types"
+import {person} from "../../../Types"
 import Experience from "./Experience.tsx"
 
 export default function Experiences({person} : {person : person}){
 
-    useEffect(() => {
-        console.log(person.experiences)
-    },[])
     return (
-        <div>
+        <ul id="experiencesList">
             {person.experiences.map((experience, index) => (
                 <Experience key={"experience" + index} experience={experience}></Experience>
             ))}
-        </div>
+        </ul>
     )
 }

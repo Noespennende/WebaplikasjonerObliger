@@ -147,7 +147,7 @@ main {
             padding: .4rem 0;
         }
 
-        #articleCards {
+        #projectCards {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
@@ -162,12 +162,12 @@ main {
                 flex-direction: row;
                 gap: 3rem;
     
-                .articleCardListElements {
+                .projectCardListElements {
 
                     box-shadow: 0 0 5px #999c9f;
                     border-radius: 5px;
 
-                    .articleCard {
+                    .projectCard {
                         text-decoration: none;
                         color: var(--textcolor);
                         border-radius: 5px;
@@ -185,7 +185,7 @@ main {
                                 }
                             }
             
-                            .articleCardHeaderAndTags {
+                            .projectCardHeaderAndTags {
                                 display: flex;
                                 flex-direction: row;
                                 justify-content: space-between;
@@ -226,7 +226,7 @@ main {
             }
         }
 
-        #createArticle {
+        #createProject {
             text-decoration: none;
             text-align: center;
             color: var(--textcolor);
@@ -240,7 +240,7 @@ main {
             background-color: var(--white); 
         }
 
-        #createArticle:hover {
+        #createProject:hover {
             background-image: var(--limitedgradient);
             background-size: cover;
             background-repeat: no-repeat;
@@ -249,10 +249,10 @@ main {
         
     }
 
-    /*Article cards*/
-    /*Article page*/
+    /*Project cards*/
+    /*project page*/
 
-    #articlePage {
+    #projectPage {
         color: var(--textcolor);
         display: flex;
         align-items: center;
@@ -265,11 +265,11 @@ main {
             margin: 2rem 0 1rem 0;
         }
 
-        #articleContent {
+        #projectContent {
             display: flex;
             flex-direction: column;
 
-            #articlePageHeaderAndTags {
+            #projectPageHeaderAndTags {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -334,9 +334,9 @@ main {
         }
     }
 
-    /*Create Article page*/
+    /*Create Project page*/
 
-    #createArticlePage{
+    #createProjectPage{
         display:flex;
         flex-direction: column;
         max-width: var(--pagewith);

@@ -2,7 +2,8 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { serveStatic } from "@hono/node-server/serve-static";
-import {readFile, writeFile} from 'node:fs/promises'
+import { getProjectData, updateProjectData } from "./src/lib";
+import {project} from "../Types"
 
 const app = new Hono()
 
@@ -11,22 +12,19 @@ app.use("/*", cors()) //Filter for å si hvem som kan gå på servere. /* betyr 
 app.use("/statics/*", serveStatic({ root: "./" }));
 
 app.get('/projects', async (c) => {
-    const data = await readFile("./jsonData/database.json", "utf-8")
-    return c.json(JSON.parse(data))
+    const data = await getProjectData()
+    return c.json(data)
 }) //Definerer hvilken URL vi henter info fra. I dette tilfellet localhost3999/json
 
 
 app.post('/submit', async (c) => {
 
     try {
-    const data = await c.req.json();
-    const jsonData = await readFile("./jsonData/database.json", "utf-8");
-    await writeFile(
-        "./jsonData/database.json",
-        JSON.stringify([...JSON.parse(jsonData), data], null, 2)
-);
-
-    return c.json({ message: 'Data saved' });
+    const newData = await c.req.json<project>();
+    const data = await getProjectData();
+    data.push(newData)
+    await updateProjectData(data)
+    return c.json({ message: 'Data saved'}, 201);
 } catch (error) {
     console.error("Could not write to file: " + error)
     return c.json({ message: 'Failed to save data to file' }, 500);

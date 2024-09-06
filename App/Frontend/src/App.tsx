@@ -2,10 +2,10 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import Frontpage from './components/Frontpage'
-import ArticlePage from './components/ArticlePage'
-import CreateArticle from './components/createArticle'
+import ProjectPage from './components/ProjectPage'
+import CreateProject from './components/CreateProject'
 import ContactPage from './components/ContactPage'
-import "./assets/Types"
+import {person} from "../../Types"
 
 function App() {
 
@@ -15,8 +15,8 @@ function App() {
     points: 360,
     email: "andrbe@hiof.no",
     experiences: [
-      {role: "Filmfotograf/Motion designer", company: "Icecube Media"},
-      {role: "Sommerpraktikant/Utvikler", company: "Kongsberg gruppen"}
+      {role: "Film-fotograf / Motion designer", company: "Icecube Media"},
+      {role: "Sommerpraktikant / Utvikler", company: "Kongsberg gruppen"}
     ]
   }
 
@@ -25,9 +25,9 @@ function App() {
     <Layout>
       <Routes>
         <Route index element={<Frontpage person={andreas}/>}/>
-        <Route path="/article/:slug" element={<ArticlePage/>}/>
-        <Route path="/createarticle" element={<CreateArticle/>}/>
-        <Route path="/contact" element={<ContactPage/>}/>
+        <Route path="/project/:slug" element={<ProjectPage/>}/>
+        <Route path="/createproject" element={<CreateProject/>}/>
+        <Route path="/contact" element={<ContactPage email={andreas.email}/>}/>
       </Routes>
     </Layout>
   

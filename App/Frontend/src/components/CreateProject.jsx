@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export default function createArticle (){
+export default function createProject (){
 
     const redirect = useNavigate();
 
@@ -113,7 +113,7 @@ export default function createArticle (){
             document.getElementById("formmessage").className = ""
             const tagsList = tags.split(" ")
 
-            const articleData = 
+            const projectData = 
                 {
                     header: header,
                     slug: slug,
@@ -126,14 +126,14 @@ export default function createArticle (){
                     createdAt: Date.now()
                 }
                 
-            postJsonDataToServer(articleData)
+            postJsonDataToServer(projectData)
         }   
     }
 
 
     return(
         <>
-            <section id="createArticlePage">
+            <section id="createProjectPage">
                 <h1>Opprett en ny artikkel</h1>
 
                 <form onSubmit={handleSubmitt}>
