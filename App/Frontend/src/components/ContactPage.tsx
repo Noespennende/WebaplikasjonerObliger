@@ -11,6 +11,39 @@ export default function ContactPage({email} : {email: string}){
     const [formMessage, setFormMessage] = useState("")
     const [debugMessage, setDebugMessage] = useState()
     const [contactInfo, setContactInfo] = useState("")
+    const [contactInfoRevealed, setContactInfoRevealed] = useState(false)
+
+    //Post data to server
+    const postMessageDataToServer = async (data) => { 
+        try {
+            const response = await fetch("http://localhost:3999/submitMessage", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+
+            if (!response.ok){
+                console.error(`Post request failed: ${response.status}`)
+            }
+        } 
+        catch (error){
+            console.error("post request failed: " + error)
+        } 
+    }
+
+    //Clears all input text from form
+    const clearInputText = () => {
+        let inputPerson = document.getElementById("contactPerson")
+        let inputEmail = document.getElementById("contactEmail")
+        let inputMessage = document.getElementById("contactMessage")
+
+        inputPerson.value = ""
+        inputEmail.value = ""
+        inputMessage.value = ""
+
+    }
 
      //HandleChange functions to handle form inputs
      const handlePersonChange = (e) => {
@@ -32,8 +65,8 @@ export default function ContactPage({email} : {email: string}){
             setFormMessage("'Ditt navn' feltet må ha ett gylding navn")
         } else if (contactEmail.length < 3 || !contactEmail.includes("@")) {
             setFormMessage("Venligst fyll inn en gyldig epost-adresse i 'Din epost' feltet")
-        } else if (formMessage.length < 3){
-            setFormMessage("Venligst skriv hva henvendelsen gjelder i 'Din melding* feltet")
+        } else if (message.length < 3){
+            setFormMessage("Venligst skriv hva henvendelsen gjelder i 'Din melding' feltet")
         } else {
             const contactMessageInfo: contactMessage = {
                 person: person,
@@ -42,18 +75,30 @@ export default function ContactPage({email} : {email: string}){
             }
 
             setDebugMessage(JSON.stringify(contactMessageInfo))
+            setFormMessage("Meldingen er motatt!")
+            postMessageDataToServer(contactMessageInfo)
+            clearInputText()
+            
+        
         }
     }
 
     //Handle funksjoner for kontaktinfo
     const handleContactInfoRevealClick = (e) => {
-        setContactInfo(<ContactInfo email={email}/>)
+        if(!contactInfoRevealed){
+            setContactInfo(<ContactInfo email={email}/>)
+            setContactInfoRevealed(true)
+        } else {
+            setContactInfo("")
+            setContactInfoRevealed(false)
+        }
     }
 
 
     return (
         <section id="contactPage">
-            <h1>Kontaktinfo</h1>
+            <h1>Kontakt meg</h1>
+
             <button type="button" onClick={handleContactInfoRevealClick}>Se kontakt informasjon</button>
             {contactInfo}
             

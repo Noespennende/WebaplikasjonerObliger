@@ -15,8 +15,22 @@ function App() {
     points: 360,
     email: "andrbe@hiof.no",
     experiences: [
-      {role: "Film-fotograf / Motion designer", company: "Icecube Media"},
-      {role: "Sommerpraktikant / Utvikler", company: "Kongsberg gruppen"}
+      {role: "Film-fotograf / Motion designer",
+        company: "Icecube Media",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnANBj-LKVu7UxYFhOyzszoA7WJe2h6H_fOA&s",
+        duration: {
+          from: "02/2014",
+          to: "07/2022"
+        }
+      },
+      {role: "Sommerpraktikant / Utvikler",
+        company: "Kongsberg gruppen",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXxSwtUCWo_QK7Z7Np_ZHpQOL0c45MY_0HtA&s",
+        duration: {
+          from: "06/2024",
+          to: "08/2024"
+        }
+      }
     ]
   }
 

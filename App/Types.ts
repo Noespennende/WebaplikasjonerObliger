@@ -1,4 +1,12 @@
-export type involvement = {role: string, company: string} 
+export type involvement = {
+  role: string,
+  company: string,
+  logo: string,
+  duration: {
+    from: String
+    to: String
+  }
+} 
 
 export type person = {
     name: string,

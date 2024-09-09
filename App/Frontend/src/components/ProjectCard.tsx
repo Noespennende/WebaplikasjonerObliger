@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom"
 import Line from "../assets/Line.png"
-import { useEffect } from "react"
-import { useState } from "react"
 
 export default function ProjectCard({header, tags, image, imageAlt, text, link} :
     {header: string, tags: string[], image: string, imageAlt: string, text: string, link: string})

@@ -5,9 +5,12 @@ export default function Experiences({person} : {person : person}){
 
     return (
         <ul id="experiencesList">
-            {person.experiences.map((experience, index) => (
+
+            {person.experiences.length > 0 ? person.experiences.map((experience, index) => (
                 <Experience key={"experience" + index} experience={experience}></Experience>
-            ))}
+            ))
+            : <li id="noExperiences">Ingen erfaringer</li>
+            }
         </ul>
     )
 }

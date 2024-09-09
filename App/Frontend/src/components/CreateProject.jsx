@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function createProject (){
@@ -23,7 +23,7 @@ export default function createProject (){
         try {
             const response = await fetch("http://localhost:3999/submit", {
                 method: 'POST',
-                header: {
+                headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
