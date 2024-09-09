@@ -15,6 +15,7 @@ export default function NavBar(){
             <ul>
                 <li><Link to="/">Hjem</Link></li>
                 <li><Link to="#">Om meg</Link></li>
+                <li><Link to="/contact">Kontakt</Link></li>
             </ul>
         </nav>
         </>

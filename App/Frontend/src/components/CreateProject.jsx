@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export default function createArticle (){
+export default function createProject (){
 
     const redirect = useNavigate();
 
     const [formMessage, setFormMessage] = useState("")
-    const [articleData, setArticleData] = useState({})
+    
     //States to store form information
     const [header, setHeader] = useState("")
     const [slug, setSlug] = useState("")
@@ -16,6 +16,29 @@ export default function createArticle (){
     const [imageAlt, setImageAlt] = useState("")
     const [repository, setRepository] = useState("")
     const [text, setText] = useState("")
+
+    //Post data to server
+    const postJsonDataToServer = async (data) => { 
+
+        try {
+            const response = await fetch("http://localhost:3999/submit", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+
+            if (!response.ok){
+                console.error(`Post request failed: ${response.status}`)
+            } else {
+                redirect("/")
+            }
+        } 
+        catch (error){
+            console.error("post request failed: " + error)
+        } 
+    }
 
     //HandleChange functions to handle form inputs
     const handleHeaderChange = (e) => {
@@ -90,7 +113,7 @@ export default function createArticle (){
             document.getElementById("formmessage").className = ""
             const tagsList = tags.split(" ")
 
-            setArticleData(
+            const projectData = 
                 {
                     header: header,
                     slug: slug,
@@ -99,46 +122,21 @@ export default function createArticle (){
                     image: image,
                     imagealt: imageAlt,
                     repository: repository,
-                    article: text
+                    article: text,
+                    createdAt: Date.now()
                 }
-            )
+                
+            postJsonDataToServer(projectData)
         }   
     }
 
-    useEffect( () => {
-        if (Object.keys(articleData).length > 7){
-            const postJsonDataToServer = async (data) => { 
-
-                try {
-                    const response = await fetch("http://localhost:3999/submit", {
-                        method: 'POST',
-                        header: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-
-                    if (!response.ok){
-                        console.error(`Post request failed: ${response.status}`)
-                    } else {
-                        redirect("/")
-                    }
-                } 
-                catch (error){
-                    console.error("post request failed: " + error)
-                } 
-            }
-            postJsonDataToServer(articleData)
-        }
-        
-    },[articleData])
 
     return(
         <>
-            <section id="createArticlePage">
+            <section id="createProjectPage">
                 <h1>Opprett en ny artikkel</h1>
 
-                <form>
+                <form onSubmit={handleSubmitt}>
                     <label htmlFor="createHeader">Overskrift</label>
                     <input onChange={handleHeaderChange} type="text" id="createHeader" name="createHeader" placeholder="Overskrift..." required></input>
                     <label htmlFor="createSlug">Slug</label>
@@ -155,7 +153,7 @@ export default function createArticle (){
                     <input onChange={handleRepositoryChange} type="url" id="createRepository" name="createRepository" placeholder="https://github.com/eksempel......" required></input>
                     <label htmlFor="createText">Artikkel</label>
                     <textarea onChange={handleTextChange} type="text" id="createText" name="createText" placeholder="Artikkel tekst..." required></textarea>
-                    <button onClick={handleSubmitt}>Opprett artikkel</button>
+                    <button type="submit">Opprett artikkel</button>
                     <p id="formmessage">{formMessage}</p>
                 </form>
             </section>
