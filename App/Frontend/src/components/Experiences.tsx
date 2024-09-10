@@ -9,7 +9,7 @@ export default function Experiences({person} : {person : person}){
             {person.experiences.length > 0 ? person.experiences.map((experience, index) => (
                 <Experience key={"experience" + index} experience={experience}></Experience>
             ))
-            : <li id="noExperiences">Ingen erfaringer</li>
+            : <li id="noExperiences">Ingen erfaringer 😞</li>
             }
         </ul>
     )

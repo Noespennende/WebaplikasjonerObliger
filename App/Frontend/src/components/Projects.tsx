@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import ArticleCard from "./ProjectCard";
+import LoadingAnimation from "../assets/LoadingAnimation.gif"
 
 export default function Projects (){
 
-    const [articles, setArticles] = useState([])
+    const [articles, setArticles] = useState()
     
     const fetchJsonDataFromServer = async () => {
         await fetch("http://localhost:3999/projects")
@@ -24,19 +25,28 @@ export default function Projects (){
     return (
     <section id="projectCards">
             <ul>
-                {articles?.length > 0 ?  
-                articles?.map((article, index) => (
-                    <li key={index} className="projectCardListElements">
-                        <ArticleCard header={article.header}
-                            tags={article.tags}
-                            image={article.image}
-                            imageAlt={article.imagealt}
-                            text={article.summary}
-                            link={"/project/"+article.slug}
-                            />
-                        </li>))
-                        : <li id="noProsjects">Ingen prosjekter</li>    
-                     }
+             
+                {articles ? (
+                    articles?.length > 0 ?  
+                        articles?.map((article, index) => (
+                            <li key={index} className="projectCardListElements">
+                                <ArticleCard header={article.header}
+                                    tags={article.tags}
+                                    image={article.image}
+                                    imageAlt={article.imagealt}
+                                    text={article.summary}
+                                    link={"/project/"+article.slug}
+                                    />
+                                </li>))
+                        : <li id="noProsjects">Ingen prosjekter 😞</li>    
+                    )
+                    :
+                    <picture className="loadingAnimation">
+                        <source media="(min-width:500px)" srcSet={LoadingAnimation}/>
+                        <img src={LoadingAnimation} alt=""  width="500" height="185"></img>
+                    </picture>
+                }
+                
                 </ul>
         </section>
     )
