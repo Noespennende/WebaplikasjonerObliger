@@ -1,17 +1,35 @@
 import { useEffect, useState } from 'react'
-import ArticleCard from "./ProjectCard";
-import LoadingAnimation from "../assets/LoadingAnimation.gif"
+import ProjectCard from "./ProjectCard";
+import LoadingProjectCard from "./LoadingProjectCard"
+
 
 export default function Projects (){
 
     const [articles, setArticles] = useState()
+    const [loading, setLoading] = useState(false)
     
     const fetchJsonDataFromServer = async () => {
+        setLoading(true)
         await fetch("http://localhost:3999/projects")
         .then((response) => response.json())
         .then((data) => setArticles(data))
         .catch((error) => console.error("Data could not be found", error))
+        .finally(() => setLoading(false))
     }
+
+
+    const generateLoadingCards = (amount : number) => {
+        return(
+            Array.from({ length: amount }, (_, index) => (
+                <li key={index} className="projectCardListElements">
+                    <LoadingProjectCard />
+                </li>
+            )
+            )
+        )
+
+    }
+
 
     useEffect(() => {
         const controller = new AbortController()
@@ -25,26 +43,24 @@ export default function Projects (){
     return (
     <section id="projectCards">
             <ul>
-             
-                {articles ? (
+                {!loading ? 
+                (
                     articles?.length > 0 ?  
                         articles?.map((article, index) => (
                             <li key={index} className="projectCardListElements">
-                                <ArticleCard header={article.header}
+                                <ProjectCard header={article.header}
                                     tags={article.tags}
                                     image={article.image}
                                     imageAlt={article.imagealt}
                                     text={article.summary}
                                     link={"/project/"+article.slug}
                                     />
-                                </li>))
+                                </li>
+                                ))
                         : <li id="noProsjects">Ingen prosjekter 😞</li>    
                     )
-                    :
-                    <picture className="loadingAnimation">
-                        <source media="(min-width:500px)" srcSet={LoadingAnimation}/>
-                        <img src={LoadingAnimation} alt=""  width="500" height="185"></img>
-                    </picture>
+                    : generateLoadingCards(6)
+        
                 }
                 
                 </ul>

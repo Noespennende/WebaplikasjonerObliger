@@ -9,6 +9,7 @@
     --textcolor: #20123a;
     --purple: #8f3b95;
     --lightpurple: #df6ee7;
+    --whitepurple: #feeeff;
     --orange: #ffa11a;
     --magenta: #ec1e5e;
     --gradient: linear-gradient(to right, #24268e , #781582, #ec1564, #f58624);
@@ -21,8 +22,21 @@
     --medium: 500;
     --bold: 700;
 
-
   }
+
+  /*Animations*/
+  @keyframes loadingCardBlink 
+        {
+            0% {
+                background-color: var(--white);
+            }
+            50% {
+                background-color: var(--LightGray); 
+            }
+            100% {
+                background-color: var(--white);
+            }
+        }
 
   /* Fixed text sizes */
 p { font-size: 1rem; font-weight: var(--regular); }
@@ -189,7 +203,7 @@ main {
             ul {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: left;
+                justify-content: center;
                 list-style: none;
                 display: flex;
                 flex-direction: row;
@@ -214,6 +228,26 @@ main {
                         transform: scale(1.1); 
                     }
 
+                    /*Loading*/
+
+                    .loadingProjectCard{
+                        display: flex;
+                        justify-content: center;
+                        box-shadow: 0 0 5px #999c9f;
+                        border-radius: 5px;
+                        box-shadow: 0 0 5px #999c9f;
+                        border-radius: 5px;
+                        width: 300px;
+                        height: 350px;
+    
+                        .loadingAnimation{
+                            margin-top: 45%;
+                        }
+                            
+    
+                    }
+
+                    /*Not Loading*/
                     .projectCard {
                         box-shadow: 0 0 5px #999c9f;
                         border-radius: 5px;
@@ -277,6 +311,7 @@ main {
                 
             }
         }
+
 
         #createProject {
             text-decoration: none;
@@ -589,49 +624,7 @@ main {
             font-weight: var(--bold);
             margin: 0;
             margin-top: 2rem;
-        }
-
-        button {
-            font-size: var(--font);
-            font-weight: var(--bold);
-            margin-top: 1rem;
-            align-self: flex-start;
-            background-size: cover;
-            color: var(--white);
-            background-color: var(--purple);
-            align-items: center;
-            padding: .8rem 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
-            border-style: none;
-            position: relative; 
-            overflow: hidden; 
-            z-index: 1; 
-
-            /*background color*/
-            &::before{
-                content: '';
-                position: absolute;
-                z-index: -1;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: var(--limitedgradient);
-                background-size: cover;
-                background-repeat: no-repeat;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-
-            }
-            
-            &:hover::before {
-                background-color: none;
-                opacity: 1;     
-            }
-        
-        }
-        
+        }     
 
         form {
             display: flex;
@@ -683,13 +676,31 @@ main {
                 border-radius: 5px;
                 border-color: var(--LightGray);
                 background-color: var(--white); 
-            }
+                position: relative; 
+                overflow: hidden; 
+                z-index: 1; 
 
-            button:hover {
-                background-image: var(--limitedgradient);
-                background-size: cover;
-                background-repeat: no-repeat;
-                cursor: pointer;
+                /*background color*/
+                &::before{
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: var(--limitedgradient);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+
+                }
+                
+                &:hover::before {
+                    background-color: none;
+                    opacity: 1;     
+                }
             }
 
             #formmessage {
