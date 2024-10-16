@@ -54,12 +54,13 @@ nav {
                 text-decoration: none;
                 font-weight: bold;
                 font-size: 20px;
-            }
 
-            a:hover {
-                text-decoration: underline;
-                cursor: pointer;
-            }
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer; 
+                }
+                
+            }  
         }
     }
 }
@@ -100,6 +101,35 @@ main {
                 border-left: none;
                 border-color: var(--LightGray);
                 border-radius: 0 4px 4px 0;
+                position: relative; 
+                overflow: hidden; 
+                z-index: 1; 
+
+                /*background color*/
+                &::before{
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: var(--limitedgradient);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+    
+                }
+                
+                &:hover::before {
+                    background-color: none;
+                    opacity: 1;     
+                }
+
+                &:hover{
+                    cursor: pointer;
+                }
 
                 svg {
                     display: inline-block;
@@ -108,11 +138,6 @@ main {
                     padding: 0;
                     text-align: center;
                 }
-            }
-            button:hover {
-                cursor: pointer;
-                background-color: transparent;
-                background-image: var(--limitedgradient);
             }
         }
 
@@ -125,8 +150,13 @@ main {
             padding: .2rem .5rem;
             color: var(--magenta);
             font-weight: var(--regular);
+
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
+
 
     #frontpageContent{
         display: flex;
@@ -159,6 +189,7 @@ main {
             ul {
                 display: flex;
                 flex-wrap: wrap;
+                justify-content: left;
                 list-style: none;
                 display: flex;
                 flex-direction: row;
@@ -175,29 +206,35 @@ main {
                 }
     
                 .projectCardListElements {
-
                     box-shadow: 0 0 5px #999c9f;
                     border-radius: 5px;
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.1); 
+                    }
 
                     .projectCard {
+                        box-shadow: 0 0 5px #999c9f;
+                        border-radius: 5px;
                         text-decoration: none;
                         color: var(--textcolor);
                         border-radius: 5px;
-            
-            
+                       
+        
                         article {
                             display:flex;
                             flex-direction: column;
                             width: 300px;
                             height: 350px;
-            
+                        
                             picture {
                                 img {
                                     border-radius: 5px 5px 0 0;
                                 }
                             }
             
-                            .projectCardHeaderAndTags {
+                            .projectCardHeader {
                                 display: flex;
                                 flex-direction: row;
                                 justify-content: space-between;
@@ -207,19 +244,22 @@ main {
                                     font-size: 24px;
                                     margin: .5rem .5rem .0rem .8rem;
                                 }
-            
-                                ul {
-                                    display: flex;
-                                    max-width: fit-content;
-                                    gap: .5rem;
-                                    list-style: none;
-                                    margin: .5rem .8rem .0rem .5rem;
+                            }
 
-                                    li {
-                                      font-weight: var(--medium); 
-                                      list-style: none;
-                                      text-align: right;
-                                    }
+                            .projectCardTags {
+                                display: flex;
+                                max-width: fit-content;
+                                height: 100%;
+                                align-items: flex-end;
+                                gap: .5rem;
+                                list-style: none;
+
+                                margin: .5rem .8rem .8rem .8rem;
+
+                                li {
+                                  font-weight: var(--medium); 
+                                  list-style: none;
+                                  text-align: right;
                                 }
                             }
             
@@ -228,7 +268,7 @@ main {
                             }
             
                             p {
-                                margin: 0 .8rem 2rem .8rem;
+                                margin: 0 .8rem 1rem .8rem;
                             }
                         }
                     }
@@ -249,14 +289,33 @@ main {
             border: solid 2px;
             border-radius: 5px;
             border-color: var(--LightGray);
-            background-color: var(--white); 
-        }
+            background-color: none;
+            position: relative; 
+            overflow: hidden; 
+            z-index: 1; 
 
-        #createProject:hover {
-            background-image: var(--limitedgradient);
-            background-size: cover;
-            background-repeat: no-repeat;
-            cursor: pointer;
+            /*Background color */
+            &::before{
+                content: '';
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: var(--limitedgradient);
+                background-size: cover;
+                background-repeat: no-repeat;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+
+            }
+
+            &:hover::before {
+                opacity: 1;
+                cursor: pointer;
+            
+            }
         }
 
        #experiences {
@@ -469,13 +528,31 @@ main {
                 border-radius: 5px;
                 border-color: var(--LightGray);
                 background-color: var(--white); 
-            }
+                position: relative; 
+                overflow: hidden; 
+                z-index: 1; 
 
-            button:hover {
-                background-image: var(--limitedgradient);
-                background-size: cover;
-                background-repeat: no-repeat;
-                cursor: pointer;
+                /*background color*/
+                &::before{
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: var(--limitedgradient);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+    
+                }
+                
+                &:hover::before {
+                    background-color: none;
+                    opacity: 1;     
+                }
             }
 
             #formmessage {
@@ -527,12 +604,34 @@ main {
             border-radius: 5px;
             margin: 1rem 0;
             border-style: none;
+            position: relative; 
+            overflow: hidden; 
+            z-index: 1; 
+
+            /*background color*/
+            &::before{
+                content: '';
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: var(--limitedgradient);
+                background-size: cover;
+                background-repeat: no-repeat;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+
             }
-        Button:hover {
-            text-decoration: none;
-            background-color: var(--lightpurple);
-            cursor: pointer;
+            
+            &:hover::before {
+                background-color: none;
+                opacity: 1;     
+            }
+        
         }
+        
 
         form {
             display: flex;
@@ -610,16 +709,16 @@ main {
             border-radius: 5px;
             box-shadow: 0 0 5px #999c9f;
             padding: 2rem;
+            margin: 2rem 0 0 0;
 
             li {
                 margin: 0.3rem 0;
             }
         }
-
     }
-    
-}
 
+}
+    
 /*Footer*/
 footer {
     background-color: var(--lightblack);

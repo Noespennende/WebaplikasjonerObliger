@@ -83,25 +83,13 @@ export default function ContactPage({email} : {email: string}){
         }
     }
 
-    //Handle funksjoner for kontaktinfo
-    const handleContactInfoRevealClick = (e) => {
-        if(!contactInfoRevealed){
-            setContactInfo(<ContactInfo email={email}/>)
-            setContactInfoRevealed(true)
-        } else {
-            setContactInfo("")
-            setContactInfoRevealed(false)
-        }
-    }
 
 
     return (
         <section id="contactPage">
             <h1>Kontakt meg</h1>
 
-            <button type="button" onClick={handleContactInfoRevealClick}>Se kontakt informasjon</button>
-            {contactInfo}
-            
+            <ContactInfo email={email}/>
             <h2>Eller kontakt meg her:</h2>
             <form onSubmit={handleSubmitt} id="contactForm">
                 <label htmlFor="contactPerson">Ditt navn</label>
