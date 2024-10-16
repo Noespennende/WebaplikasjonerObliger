@@ -163,16 +163,6 @@ main {
                 display: flex;
                 flex-direction: row;
                 gap: 3rem;
-
-                #noProsjects {
-                    font-size: 2rem;
-                    font-weight: var(--bold);
-                    color: var(--textcolor);
-                    box-shadow: 0 0 5px #999c9f;
-                    border-radius: 5px;
-                    padding: 2rem;
-
-                }
     
                 .projectCardListElements {
 
